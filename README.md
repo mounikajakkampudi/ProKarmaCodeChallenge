@@ -1,4 +1,4 @@
-# ProKarmaCodeChallenge
+# ProKarma Code Challenge
 
 ## Project Highlights
 
