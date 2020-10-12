@@ -69,13 +69,16 @@ class DataTableViewController: UITableViewController {
         let lastRowIndex = tableView.numberOfRows(inSection: lastSectionIndex) - 1
         if indexPath.section ==  lastSectionIndex && indexPath.row == lastRowIndex && !self.dataViewModel.afterLink.isEmpty {
             self.fetchChildrensList()
-            let spinner = UIActivityIndicatorView(style: .medium)
-            spinner.startAnimating()
-            spinner.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: tableView.bounds.width, height: CGFloat(44))
-
-            self.tableView.tableFooterView = spinner
+            self.tableView.tableFooterView = loadSpinnnnerView()
             self.tableView.tableFooterView?.isHidden = !self.isDataLoaded
         }
+    }
+    
+    func loadSpinnnnerView() -> UIActivityIndicatorView {
+        let spinner = UIActivityIndicatorView(style: .medium)
+        spinner.startAnimating()
+        spinner.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: tableView.bounds.width, height: CGFloat(44))
+        return spinner
     }
 
 }
