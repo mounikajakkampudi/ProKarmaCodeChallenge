@@ -22,13 +22,28 @@ class iOSChallengeTests: XCTestCase {
     func testExample() throws {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
+        testAsyncAPICall()
     }
+    func testAsyncAPICall() {
+        let asyncExpectation = expectation(description: "Getting json Dictionary from REST")
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+        let model = DataViewModel()
+        model.fetchChildrensList { (result) in
+            switch result {
+            case .failure(let error) :
+                XCTAssertNil(error)
+            case .success(let success) :
+                XCTAssertTrue(success)
+                XCTAssertEqual(model.childrensList.count, 25)
+            }
+            asyncExpectation.fulfill()
         }
+        
+         // after fulfillment
+        waitForExpectations(timeout: 10) { (error:Error?) in
+            XCTAssertNil(error)
+        }
+    
     }
 
 }

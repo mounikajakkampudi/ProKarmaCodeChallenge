@@ -60,13 +60,9 @@ class DataTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCell(withIdentifier: customTableCellResuseId, for: indexPath) as? CustomTableViewCell
-        if cell == nil {
-          cell = UITableViewCell(style:UITableViewCell.CellStyle.default, reuseIdentifier:customTableCellResuseId) as? CustomTableViewCell
-        }
-        cell!.childrenDataObject = self.dataViewModel.getChildrenObjectAtIndex(index: indexPath.row)
-        
-        return cell!
+        let cell = tableView.dequeueReusableCell(withIdentifier: customTableCellResuseId, for: indexPath) as! CustomTableViewCell
+        cell.childrenDataObject = self.dataViewModel.getChildrenObjectAtIndex(index: indexPath.row)
+        return cell
     }
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let lastSectionIndex = tableView.numberOfSections - 1
