@@ -1,15 +1,15 @@
 # ProKarmaCodeChallenge
 
-Project Highlights
+## Project Highlights
 
-MVVM architecture   
+### MVVM architecture   
 MVVM (Model-View-ViewModel) is derived from MVC(Model-View-Controller). It is introduced to solve existing problems of Cocoa's MVC architecture in iOS world. One of its feature is to make a better separation of concerns so that it is easier to maintain and extend.
 Key Features: Distribution, Testability, Reusability
 * Model: It is similar to model layer in MVC (contains data business logic)
 * View: UIViews + UIViewControllers (We treat both layout view and controllers as View)
 * ViewModel: A mediator to glue above two layers together.
 
-ImageCache  
+### ImageCache  
 With ImageCache, you can optimize the image loading within an app and enhance user experience. After all, loading images from cache should be always faster than getting ones from the network.
 
 Infinite Scrolling: Requesting Next Pages  
