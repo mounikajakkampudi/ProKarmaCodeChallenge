@@ -12,7 +12,7 @@ Key Features: Distribution, Testability, Reusability
 ### ImageCache  
 With ImageCache, you can optimize the image loading within an app and enhance user experience. After all, loading images from cache should be always faster than getting ones from the network.
 
-Infinite Scrolling: Requesting Next Pages  
+### Infinite Scrolling: Requesting Next Pages  
 We need to modify the view model code to request the next pages of the API. Here’s an overview of what we need to do:
 * Keep track of the last page received so you know which page is needed next when the UI calls the request method
 * Build the full list of feed. When you receive a new page from the API, you have to add it to your feed’s list (instead of replacing it ). When get a response, can update the table view to include all of the feeds received thus far.
