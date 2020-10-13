@@ -8,6 +8,7 @@ target 'CodeChallenge' do
   # Pods for CodeChallenge
   pod 'ReachabilitySwift'
   pod 'SwiftLint'
+  pod 'MBProgressHUD'
   
   target 'CodeChallengeTests' do
     inherit! :search_paths

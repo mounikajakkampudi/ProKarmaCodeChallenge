@@ -7,29 +7,27 @@
 //
 
 import UIKit
+import MBProgressHUD
 
 extension UIViewController {
-    func showLodingViewAlert() {
-       let alert = UIAlertController(title: nil, message: "Loading...", preferredStyle: .alert)
-       let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
-       loadingIndicator.hidesWhenStopped = true
-        if #available(iOS 13.0, *) {
-            loadingIndicator.style = .large
-        } else {
-            loadingIndicator.style = .gray
-        }
-       loadingIndicator.startAnimating()
-       alert.view.addSubview(loadingIndicator)
-       self.present(alert, animated: true, completion: nil)
-    }
-    func dismissAlert() {
-        if let presentedVC = self.presentedViewController, presentedVC is UIAlertController {
-            self.dismiss(animated: false, completion: nil)
+    func showProgressHUD(progressLabel:String){
+        DispatchQueue.main.async{
+            let progressHUD = MBProgressHUD.showAdded(to: self.view, animated: true)
+            progressHUD.label.text = progressLabel
         }
     }
+
+    func dismissHUD(isAnimated:Bool) {
+        DispatchQueue.main.async{
+            MBProgressHUD.hide(for: self.view, animated: isAnimated)
+        }
+    }
+    
     func showErrorAlert(title: String, message: String) {
+        DispatchQueue.main.async{
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
+        }
     }
 }

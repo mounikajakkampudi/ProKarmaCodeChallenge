@@ -17,10 +17,6 @@ class DataTableViewController: UITableViewController {
         self.setupTableView()
         self.fetchChildrensList()
     }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        self.showLodingViewAlert()
-    }
     func setupTableView() {
         self.tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: customTableCellResuseId)
         self.tableView.rowHeight = UITableView.automaticDimension
@@ -28,9 +24,10 @@ class DataTableViewController: UITableViewController {
         self.tableView.separatorStyle = .none
     }
     func fetchChildrensList() {
+        self.showProgressHUD(progressLabel: "Loading...")
         self.dataViewModel.fetchChildrensList { (result) in
             DispatchQueue.main.async {
-                   self.dismissAlert()
+                self.dismissHUD(isAnimated: true)
                    switch result {
                    case .failure(let error) :
                     self.showErrorAlert(title: appName, message: error.localizedDescription)
