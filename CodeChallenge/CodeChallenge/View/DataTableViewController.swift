@@ -29,12 +29,12 @@ class DataTableViewController: UITableViewController {
     }
     func fetchChildrensList() {
         self.dataViewModel.fetchChildrensList { (result) in
+            DispatchQueue.main.async {
+                   self.dismissAlert()
                    switch result {
                    case .failure(let error) :
                     self.showErrorAlert(title: appName, message: error.localizedDescription)
                    case .success(let success) :
-                    DispatchQueue.main.async {
-                        self.dismissAlert()
                        if success {
                             self.isDataLoaded = true
                             self.tableView.reloadData()

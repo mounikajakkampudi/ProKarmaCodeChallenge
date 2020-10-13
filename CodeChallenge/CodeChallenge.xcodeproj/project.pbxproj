@@ -10,7 +10,6 @@
 		35F02C361E96BD05F633D085 /* Pods_CodeChallenge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B94765B46812D3777FA34348 /* Pods_CodeChallenge.framework */; };
 		53C1850E89C5929A6EFCA930 /* Pods_CodeChallenge_CodeChallengeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B72151DE3849CC19501A160D /* Pods_CodeChallenge_CodeChallengeUITests.framework */; };
 		61355F40253536200086905A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61355F3F253536200086905A /* AppDelegate.swift */; };
-		61355F42253536200086905A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61355F41253536200086905A /* SceneDelegate.swift */; };
 		61355F49253536220086905A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 61355F48253536220086905A /* Assets.xcassets */; };
 		61355F4C253536220086905A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61355F4A253536220086905A /* LaunchScreen.storyboard */; };
 		61355F57253536220086905A /* CodeChallengeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61355F56253536220086905A /* CodeChallengeTests.swift */; };
@@ -48,7 +47,6 @@
 		4B80773B32D49376336FB31D /* Pods-CodeChallenge-CodeChallengeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CodeChallenge-CodeChallengeUITests.release.xcconfig"; path = "Target Support Files/Pods-CodeChallenge-CodeChallengeUITests/Pods-CodeChallenge-CodeChallengeUITests.release.xcconfig"; sourceTree = "<group>"; };
 		61355F3C253536200086905A /* CodeChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CodeChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		61355F3F253536200086905A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		61355F41253536200086905A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		61355F48253536220086905A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		61355F4B253536220086905A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		61355F4D253536220086905A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -134,7 +132,6 @@
 				61355F71253536EB0086905A /* Service */,
 				61355F70253536E30086905A /* Utilities */,
 				61355F3F253536200086905A /* AppDelegate.swift */,
-				61355F41253536200086905A /* SceneDelegate.swift */,
 				61355F48253536220086905A /* Assets.xcassets */,
 				61355F4A253536220086905A /* LaunchScreen.storyboard */,
 				61355F4D253536220086905A /* Info.plist */,
@@ -483,7 +480,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				61355F40253536200086905A /* AppDelegate.swift in Sources */,
-				61355F42253536200086905A /* SceneDelegate.swift in Sources */,
 				61355F842535374B0086905A /* NetworkManager.swift in Sources */,
 				61355F82253537420086905A /* DataViewModel.swift in Sources */,
 				61355F80253537340086905A /* CustomTableViewCell.swift in Sources */,
@@ -659,6 +655,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = CodeChallenge/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -677,6 +674,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = CodeChallenge/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
