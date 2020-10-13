@@ -34,15 +34,17 @@ class DataTableViewController: UITableViewController {
         self.dataViewModel.fetchChildrensList() { (result) in
                    switch result {
                    case .failure(let error) :
-                       print(error.localizedDescription)
+                    self.showErrorAlert(title: appName, message: error.localizedDescription)
                    case .success(let success) :
+                    DispatchQueue.main.async {
+                        self.dismissAlert()
                        if success {
-                           DispatchQueue.main.async {
                             self.isDataLoaded = true
-                            self.dismissAlert()
                             self.tableView.reloadData()
-                           }
+                       } else {
+                        self.showErrorAlert(title: appName, message: commonErrorMessage)
                        }
+                    }
                    }
                }
     }
@@ -75,10 +77,15 @@ class DataTableViewController: UITableViewController {
     }
     
     func loadSpinnnnerView() -> UIActivityIndicatorView {
-        let spinner = UIActivityIndicatorView(style: .medium)
+        let spinner = UIActivityIndicatorView()
+
+        if #available(iOS 13.0, *) {
+            spinner.style = .medium
+        } else {
+            spinner.style = .gray
+        }
         spinner.startAnimating()
         spinner.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: tableView.bounds.width, height: CGFloat(44))
         return spinner
     }
-
 }

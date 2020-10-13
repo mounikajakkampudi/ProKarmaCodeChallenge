@@ -12,7 +12,7 @@ class CustomTableViewCell: UITableViewCell {
 
     private let postImageView : UIImageView = {
         let imgView = UIImageView(image: UIImage(named: "placeholder.png"))
-        imgView.contentMode = .scaleAspectFill
+        imgView.contentMode = .scaleAspectFit
         imgView.clipsToBounds = true
         return imgView
     }()
@@ -45,7 +45,12 @@ class CustomTableViewCell: UITableViewCell {
     
     private let shadowLabel : UILabel =  {
         let label = UILabel()
-        label.backgroundColor = .systemGray5
+        if #available(iOS 13.0, *) {
+            label.backgroundColor = .systemGray5
+        } else {
+            let rgbValue: CGFloat = 220/256
+            label.backgroundColor = UIColor(red: rgbValue, green: rgbValue, blue: rgbValue, alpha: 1.0)
+        }
         return label
         
     }()
