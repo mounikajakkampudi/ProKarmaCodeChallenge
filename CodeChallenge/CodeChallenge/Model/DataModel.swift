@@ -8,6 +8,7 @@
 
 import Foundation
 
+// Data Model to decode from JSON Decoder
 struct ResponseDataObject: Decodable {
     let kind: String?
     let data: ListDataObject?
@@ -33,6 +34,8 @@ struct ChildrenDataObject: Decodable {
     let title: String?
     let numComments: Int?
     let score: Int?
+
+    // default Initializer
     init() {
         thumbnail = ""
         thumbnailWidth = 0

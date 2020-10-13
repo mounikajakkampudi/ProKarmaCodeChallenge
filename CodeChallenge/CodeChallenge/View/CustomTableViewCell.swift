@@ -61,7 +61,6 @@ class CustomTableViewCell: UITableViewCell {
         stackViewHorizontal.addArrangedSubview(postCommentNoLabel)
         stackViewHorizontal.addArrangedSubview(postScoreLabel)
         stackViewHorizontal.translatesAutoresizingMaskIntoConstraints = false
-
         //stackView
         stackView.backgroundColor = UIColor.white
         stackView.axis  = NSLayoutConstraint.Axis.vertical
@@ -95,6 +94,7 @@ class CustomTableViewCell: UITableViewCell {
     required init?(coder aDecoder: NSCoder) {
        fatalError("init(coder:) has not been implemented")
     }
+    // Update UITableViewCell UI on didSet ChildrenDataObject
     var childrenDataObject: ChildrenDataObject? {
      didSet {
         guard let childrenDTO = childrenDataObject else {
@@ -103,6 +103,7 @@ class CustomTableViewCell: UITableViewCell {
         postTitleLabel.text = childrenDTO.title
         postCommentNoLabel.text = "\(childrenDTO.numComments ?? 0) Comments"
         postScoreLabel.text = "Score: \(childrenDTO.score ?? 0)"
+        // Update imageview from cache or network
         postImageView.setImageFromServerURL(childrenDTO.thumbnail ?? "", placeHolder: UIImage(named: "placeholder.png")!) { (_) -> Void in
          }
         }

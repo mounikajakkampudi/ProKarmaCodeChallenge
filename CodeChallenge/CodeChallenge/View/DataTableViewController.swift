@@ -18,12 +18,14 @@ class DataTableViewController: UITableViewController {
         self.showProgressHUD(progressLabel: "Loading...")
         self.fetchChildrensList()
     }
+    // Set tableview properties and register cell
     func setupTableView() {
         self.tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: customTableCellResuseId)
         self.tableView.rowHeight = UITableView.automaticDimension
         self.tableView.estimatedRowHeight = 150
         self.tableView.separatorStyle = .none
     }
+    // Do fetch call to DataViewModel
     func fetchChildrensList() {
         self.dataViewModel.fetchChildrensList { (result) in
             DispatchQueue.main.async {
@@ -61,16 +63,6 @@ class DataTableViewController: UITableViewController {
         cell.childrenDataObject = self.dataViewModel.getChildrenObjectAtIndex(index: indexPath.row)
         return cell
     }
-    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let lastSectionIndex = tableView.numberOfSections - 1
-        let lastRowIndex = tableView.numberOfRows(inSection: lastSectionIndex) - 1
-        if indexPath.section ==  lastSectionIndex && indexPath.row == lastRowIndex && !self.dataViewModel.afterLink.isEmpty {
-            self.fetchChildrensList()
-            self.tableView.tableFooterView = loadSpinnnnerView()
-            self.tableView.tableFooterView?.isHidden = !self.isDataLoaded
-        }
-    }
-    
     // Load feed data before reaching bottom
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         // UITableView only moves in one direction, y axis
@@ -86,8 +78,7 @@ class DataTableViewController: UITableViewController {
             }
         }
     }
-    
-    // 
+    // Load spinner at tableview footer while pagination of load more feed data
     func loadSpinnnnerView() -> UIActivityIndicatorView {
         let spinner = UIActivityIndicatorView()
 
@@ -100,8 +91,4 @@ class DataTableViewController: UITableViewController {
         spinner.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: tableView.bounds.width, height: CGFloat(44))
         return spinner
     }
-    
-    
-    
-    
 }

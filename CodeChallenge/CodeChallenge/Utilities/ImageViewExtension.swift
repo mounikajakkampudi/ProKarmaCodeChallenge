@@ -12,16 +12,20 @@ let imageCache = NSCache<NSString, UIImage>()
 
 extension UIImageView {
 
+    // Update imageview from cache or network
     func setImageFromServerURL(_ URLString: String, placeHolder: UIImage, completion: @escaping (UIImage) -> Void) {
+        // Set to default image. So that no duplicates
         self.image = placeHolder
         //If imageurl's imagename has space then this line going to work for this
         let imageServerUrl = URLString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+        // Check for image if exists in cache
         if let cachedImage = imageCache.object(forKey: NSString(string: imageServerUrl)) {
             self.image = cachedImage
             completion(cachedImage)
             return
         }
 
+        // If not cached before, download image from server
             DispatchQueue.global().async {
                 NetworkManager.shared.get(urlString: imageServerUrl) { (result) in
                     switch result {
