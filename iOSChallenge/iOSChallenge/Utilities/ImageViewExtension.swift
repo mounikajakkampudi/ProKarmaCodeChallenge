@@ -26,7 +26,9 @@ extension UIImageView {
                 NetworkManager.shared.get(urlString: imageServerUrl) { (result) in
                     switch result {
                     case .failure(let error):
+                        #if DEBUG
                         print("ERROR LOADING IMAGES FROM URL: \(String(describing: error.localizedDescription))")
+                        #endif
                         DispatchQueue.main.async {
                             self.image = placeHolder
                             completion(placeHolder)

@@ -42,5 +42,4 @@ struct ChildrenDataObject: Decodable {
         numComments = 0
         score = 0
     }
-    
 }

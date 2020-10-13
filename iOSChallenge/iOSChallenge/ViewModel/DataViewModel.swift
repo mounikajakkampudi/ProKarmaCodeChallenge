@@ -29,7 +29,6 @@ extension DataViewModel {
             guard let self = self else {return}
             switch result {
             case .failure(let error):
-                print ("failure", error)
                 completion(.failure(error))
             case .success(let dta) :
                 let decoder = JSONDecoder()
@@ -41,7 +40,10 @@ extension DataViewModel {
                     self.afterLink = dataObject.data?.after ?? ""
                     completion(.success(true))
                 } catch {
-                    print("failed to decode json")
+                    #if DEBUG
+                    print("failed to decode json \(error)")
+                    #endif
+                    completion(.success(false))
                 }
             }
         })
