@@ -15,6 +15,7 @@ class DataTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupTableView()
+        self.showProgressHUD(progressLabel: "Loading...")
         self.fetchChildrensList()
     }
     func setupTableView() {
@@ -24,7 +25,6 @@ class DataTableViewController: UITableViewController {
         self.tableView.separatorStyle = .none
     }
     func fetchChildrensList() {
-        self.showProgressHUD(progressLabel: "Loading...")
         self.dataViewModel.fetchChildrensList { (result) in
             DispatchQueue.main.async {
                 self.dismissHUD(isAnimated: true)
@@ -70,6 +70,24 @@ class DataTableViewController: UITableViewController {
             self.tableView.tableFooterView?.isHidden = !self.isDataLoaded
         }
     }
+    
+    // Load feed data before reaching bottom
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        // UITableView only moves in one direction, y axis
+        let currentOffset = scrollView.contentOffset.y
+        let maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height
+
+        // Change 400.0 to adjust the distance from bottom
+        if maximumOffset - currentOffset <= 400.0 {
+               if !self.dataViewModel.afterLink.isEmpty {
+                self.fetchChildrensList()
+                self.tableView.tableFooterView = loadSpinnnnerView()
+                self.tableView.tableFooterView?.isHidden = !self.isDataLoaded
+            }
+        }
+    }
+    
+    // 
     func loadSpinnnnerView() -> UIActivityIndicatorView {
         let spinner = UIActivityIndicatorView()
 
@@ -82,4 +100,8 @@ class DataTableViewController: UITableViewController {
         spinner.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: tableView.bounds.width, height: CGFloat(44))
         return spinner
     }
+    
+    
+    
+    
 }

@@ -29,8 +29,7 @@ extension HTTPError: LocalizedError {
 
 class NetworkManager {
     static let shared: NetworkManager = NetworkManager()
-
-   
+    
     public func get(urlString: String, completionBlock: @escaping (Result<Data, Error>) -> Void) {
         let reachability = try! Reachability()
 
