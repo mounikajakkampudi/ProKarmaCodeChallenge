@@ -9,10 +9,11 @@
 import XCTest
 
 class CodeChallengeUITests: XCTestCase {
+    let app = XCUIApplication()
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
-
+        app.launch()
         // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
 
@@ -25,9 +26,8 @@ class CodeChallengeUITests: XCTestCase {
 
     func testExample() throws {
         // UI tests must launch the application that they test.
-        let app = XCUIApplication()
-        app.launch()
-
+        XCTAssertNotNil(app.tables)
+        XCTAssertEqual(app.tables.count, 1)
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
