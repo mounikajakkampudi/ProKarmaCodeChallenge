@@ -22,7 +22,6 @@ class DataViewModel {
 
 extension DataViewModel {
     func fetchChildrensList(completion: @escaping (Result<Bool, Error>) -> Void) {
-
         NetworkManager.shared.get(urlString: baseUrl + afterLink, completionBlock: { [weak self] result in
             guard let self = self else {return}
             switch result {
